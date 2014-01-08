@@ -108,7 +108,7 @@ extern NSString * const kTTTBackgroundCornerRadiusAttributeName;
 /**
  @deprecated Use `enabledTextCheckingTypes` property instead.
  */
-@property (nonatomic, assign) NSTextCheckingTypes dataDetectorTypes DEPRECATED_MSG_ATTRIBUTE("Use enabledTextCheckingTypes property instead.");
+@property (nonatomic, assign) NSTextCheckingTypes dataDetectorTypes DEPRECATED_ATTRIBUTE;
 
 /**
  A bitmask of `NSTextCheckingType` which are used to automatically detect links in the label text.
@@ -210,6 +210,24 @@ extern NSString * const kTTTBackgroundCornerRadiusAttributeName;
  The attributes to apply to the truncation token at the end of a truncated line. If unspecified, attributes will be inherited from the preceding character.
  */
 @property (nonatomic, strong) NSDictionary *truncationTokenStringAttributes;
+
+
+///--------------------------------------------
+/// @name Calculating Size of Attributed String
+///--------------------------------------------
+
+/**
+ Calculate and return the size that best fits an attributed string, given the specified constraints on size and number of lines.
+
+ @param attributedString The attributed string.
+ @param size The maximum dimensions used to calculate size.
+ @param numberOfLines The maximum number of lines in the text to draw, if the constraining size cannot accomodate the full attributed string.
+ 
+ @return The size that fits the attributed string within the specified constraints.
+ */
++ (CGSize)sizeThatFitsAttributedString:(NSAttributedString *)attributedString
+                       withConstraints:(CGSize)size
+                limitedToNumberOfLines:(NSUInteger)numberOfLines;
 
 ///----------------------------------
 /// @name Setting the Text Attributes
